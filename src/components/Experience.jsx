@@ -5,6 +5,10 @@ import {
   FaMapMarkerAlt,
   FaTimes,
   FaCheckCircle,
+  FaLaptop,
+  FaCode,
+  FaReact,
+  FaServer,
 } from "react-icons/fa";
 import experienceImage from "../assets/react.svg";
 
@@ -38,6 +42,96 @@ const Experience = () => {
     {
       id: 1,
       title: "Programming Instructor",
+      company: "3C School",
+      location: "Online",
+      period: "May 2025 - Present",
+      type: "Part-time",
+      image: experienceImage,
+      description:
+        "Teaching programming languages and concepts to students of different ages.",
+      achievements: [
+        "Teaching programming fundamentals to students across various age groups",
+        "Developing engaging curriculum for online programming courses",
+        "Mentoring students in coding best practices and problem-solving",
+        "Creating interactive learning materials for remote education",
+      ],
+      icon: FaLaptop,
+      theme: {
+        primary: "#4CAF50",
+        secondary: "#81C784"
+      }
+    },
+    {
+      id: 2,
+      title: "Programming Instructor",
+      company: "GC School",
+      location: "Online",
+      period: "May 2025 - Present",
+      type: "Part-time",
+      image: experienceImage,
+      description:
+        "Teaching programming languages and concepts to students of different ages.",
+      achievements: [
+        "Delivering comprehensive programming courses to diverse student groups",
+        "Adapting teaching methods for different learning styles and ages",
+        "Building strong online learning communities",
+        "Tracking student progress and providing personalized feedback",
+      ],
+      icon: FaCode,
+      theme: {
+        primary: "#2196F3",
+        secondary: "#64B5F6"
+      }
+    },
+    {
+      id: 3,
+      title: "Frontend Intern (React)",
+      company: "ITI",
+      location: "Ismailia, Egypt",
+      period: "June 2025 - Present",
+      type: "Internship",
+      image: experienceImage,
+      description:
+        "Learning JavaScript and React while working on real projects in teams and achieved A+ in final project.",
+      achievements: [
+        "Mastered JavaScript ES6+ features and modern development practices",
+        "Built responsive web applications using React.js and modern libraries",
+        "Collaborated effectively in team-based development projects",
+        "Achieved A+ grade in final project demonstrating technical excellence",
+        "Gained experience with version control systems and agile methodologies",
+      ],
+      icon: FaReact,
+      theme: {
+        primary: "#61DAFB",
+        secondary: "#21232A"
+      }
+    },
+    {
+      id: 4,
+      title: "Full Stack Intern",
+      company: "STEM Entrepreneurship",
+      location: "Remote",
+      period: "March 2025 - May 2025",
+      type: "Internship",
+      image: experienceImage,
+      description:
+        "Gained comprehensive experience in full-stack web development technologies and frameworks.",
+      achievements: [
+        "Developed end-to-end web applications using modern tech stack",
+        "Learned backend development with Node.js and database management",
+        "Implemented RESTful APIs and integrated frontend with backend services",
+        "Worked with both SQL and NoSQL databases",
+        "Participated in code reviews and agile development processes",
+      ],
+      icon: FaServer,
+      theme: {
+        primary: "#FF6B35",
+        secondary: "#F7931E"
+      }
+    },
+    {
+      id: 5,
+      title: "Programming Instructor",
       company: "Discovery Academy for Science and Technology",
       location: "Portsaid, Egypt",
       period: "February 2024 - Present",
@@ -51,9 +145,33 @@ const Experience = () => {
         "Increased courses enrollment rates by 20%",
         "Learning Team Work while collaborating with my team in may competition and freelancing jobs",
       ],
+      icon: FaBriefcase,
+      theme: {
+        primary: "#9C27B0",
+        secondary: "#BA68C8"
+      }
     },
     {
-      id: 2,
+      id: 6,
+      title: ".NET WEB Development Intern",
+      company: "ITI",
+      location: "Ismailia, Egypt",
+      period: "July 2024 - August 2024",
+      type: "Internship",
+      image: experienceImage,
+      description: "Learning full stack web development using .NET framework.",
+      achievements: [
+        "Learning to make a full stack website using MVC (.NET)",
+        "Took a total score of 120/120 in the end of training and A+ in final project",
+      ],
+      icon: FaCode,
+      theme: {
+        primary: "#512BD4",
+        secondary: "#7B68EE"
+      }
+    },
+    {
+      id: 7,
       title: "Backend Intern",
       company: "Suez Canal University",
       location: "Ismailia, Egypt",
@@ -65,20 +183,11 @@ const Experience = () => {
         "Learning MongoDB and how to make server and apply CRUD operations on products using Nodejs and made an online pharmacy for a final project and we toke a total score of 49/50",
         "Learning about relational data base and non relational (NoSQL)",
       ],
-    },
-    {
-      id: 3,
-      title: ".NET WEB Development Intern",
-      company: "Iti",
-      location: "Ismailia, Egypt",
-      period: "July 2024 - August 2024",
-      type: "Internship",
-      image: experienceImage,
-      description: "Learning full stack web development using .NET framework.",
-      achievements: [
-        "Learning to make a full stack website using MVC (.NET)",
-        "Took a total score of 120/120 in the end of training and A+ in final project",
-      ],
+      icon: FaServer,
+      theme: {
+        primary: "#4DB33D",
+        secondary: "#68CC45"
+      }
     },
   ];
 
@@ -116,57 +225,88 @@ const Experience = () => {
         </div>
 
         <div className="experience-grid">
-          {experiences.map((experience, index) => (
-            <div
-              key={experience.id}
-              className={`card experience-card fade-up ${
-                visibleSection ? "visible" : ""
-              }`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-              onClick={() => handleOpenExperience(experience)}
-            >
-              <div className="experience-header">
-                <div>
-                  <h3 className="experience-title">{experience.title}</h3>
-                  <p className="experience-company">{experience.company}</p>
+          {experiences.map((experience, index) => {
+            const IconComponent = experience.icon;
+            return (
+              <div
+                key={experience.id}
+                className={`card experience-card fade-up ${
+                  visibleSection ? "visible" : ""
+                }`}
+                style={{ 
+                  transitionDelay: `${index * 0.1}s`,
+                  borderLeft: `4px solid ${experience.theme.primary}`
+                }}
+                onClick={() => handleOpenExperience(experience)}
+              >
+                <div className="experience-header">
+                  <div>
+                    <h3 className="experience-title">{experience.title}</h3>
+                    <p className="experience-company" style={{ color: experience.theme.primary }}>
+                      {experience.company}
+                    </p>
+                  </div>
+                  <div 
+                    className="experience-icon"
+                    style={{ 
+                      backgroundColor: `${experience.theme.primary}20`,
+                      color: experience.theme.primary 
+                    }}
+                  >
+                    <IconComponent />
+                  </div>
                 </div>
-                <div className="experience-icon">
-                  <FaBriefcase />
+
+                <div className="experience-meta">
+                  <div className="experience-meta-item">
+                    <FaCalendarAlt />
+                    <span>{experience.period}</span>
+                  </div>
+
+                  <div className="experience-meta-item">
+                    <FaMapMarkerAlt />
+                    <span>{experience.location}</span>
+                  </div>
                 </div>
+
+                <p>{experience.description}</p>
+
+                <button 
+                  className="btn btn-outline mt-4"
+                  style={{
+                    borderColor: experience.theme.primary,
+                    color: experience.theme.primary
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = `${experience.theme.primary}15`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  View Details →
+                </button>
               </div>
-
-              <div className="experience-meta">
-                <div className="experience-meta-item">
-                  <FaCalendarAlt />
-                  <span>{experience.period}</span>
-                </div>
-
-                <div className="experience-meta-item">
-                  <FaMapMarkerAlt />
-                  <span>{experience.location}</span>
-                </div>
-              </div>
-
-              <p>{experience.description}</p>
-
-              <button className="btn btn-outline mt-4">View Details →</button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {/* Experience Detail Modal */}
       {selectedExperience && (
         <div className="modal-overlay" onClick={handleCloseExperience}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div 
+            className="modal-content" 
+            onClick={(e) => e.stopPropagation()}
+            style={{ border: `2px solid ${selectedExperience.theme.primary}` }}
+          >
             <div className="relative">
               <button className="modal-close" onClick={handleCloseExperience}>
                 <FaTimes />
               </button>
               <div
                 style={{
-                  background:
-                    "linear-gradient(135deg, var(--primary-dark), var(--secondary-color))",
+                  background: `linear-gradient(135deg, ${selectedExperience.theme.primary}, ${selectedExperience.theme.secondary})`,
                   padding: "2rem",
                 }}
               >
@@ -181,7 +321,7 @@ const Experience = () => {
                   <div
                     style={{
                       background: "white",
-                      padding: "0.5rem",
+                      padding: "1rem",
                       borderRadius: "50%",
                       width: "100px",
                       height: "100px",
@@ -195,24 +335,17 @@ const Experience = () => {
                         src={selectedExperience.image}
                         alt={selectedExperience.company}
                         style={{
-                          width: "90px",
-                          height: "90px",
+                          width: "60px",
+                          height: "60px",
                           borderRadius: "50%",
                           objectFit: "cover",
                         }}
                       />
                     ) : (
-                      <div
-                        className="img-placeholder"
-                        style={{
-                          width: "90px",
-                          height: "90px",
-                          borderRadius: "50%",
-                          fontSize: "0.8rem",
-                        }}
-                      >
-                        {selectedExperience.company}
-                      </div>
+                      <selectedExperience.icon 
+                        size={40} 
+                        style={{ color: selectedExperience.theme.primary }}
+                      />
                     )}
                   </div>
                   <div style={{ textAlign: "center" }}>
@@ -265,7 +398,12 @@ const Experience = () => {
                 </div>
               </div>
               <div className="modal-body">
-                <h4 className="modal-section-title">Key Achievements</h4>
+                <h4 
+                  className="modal-section-title"
+                  style={{ color: selectedExperience.theme.primary }}
+                >
+                  Key Achievements
+                </h4>
                 <ul
                   style={{
                     display: "flex",
@@ -284,7 +422,7 @@ const Experience = () => {
                     >
                       <FaCheckCircle
                         style={{
-                          color: "var(--primary-color)",
+                          color: selectedExperience.theme.primary,
                           marginTop: "0.25rem",
                           flexShrink: 0,
                         }}
