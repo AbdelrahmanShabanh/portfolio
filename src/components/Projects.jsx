@@ -57,6 +57,12 @@ const Projects = () => {
       details:
         "An e-commerce platform for a clothing brand featuring customized theme colors and a user-friendly interface that contributed to a 55% increase in buying rates.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#e91e63",
+        secondary: "#f8bbd9",
+        gradient: "linear-gradient(135deg, #e91e63, #f8bbd9)",
+        accent: "#ad1457"
+      }
     },
     {
       id: 2,
@@ -70,6 +76,12 @@ const Projects = () => {
       details:
         "A website for rental electric scooters at GU university in Suez, designed for students use within the campus. It will serve more than 20k college students. Led a team of Backend, Flutter, UX/UI developers and using Git, GitHub as version control.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#ff9800",
+        secondary: "#ffcc80",
+        gradient: "linear-gradient(135deg, #ff9800, #ffcc80)",
+        accent: "#f57c00"
+      }
     },
     {
       id: 3,
@@ -83,6 +95,12 @@ const Projects = () => {
       details:
         "This Weather App is a lightweight web application that allows users to check current weather conditions for any city or country. The app fetches real-time data from a weather API and displays temperature, humidity, wind speed, and weather conditions in a clean, user-friendly interface. Users can search for locations and get instant weather updates with visual indicators for different weather conditions.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#2e7d32",
+        secondary: "#81c784",
+        gradient: "linear-gradient(135deg, #2e7d32, #81c784)",
+        accent: "#1b5e20"
+      }
     },
     {
       id: 4,
@@ -96,6 +114,12 @@ const Projects = () => {
       details:
         "Top Movies is a React-based movie rating application inspired by IMDb. It allows users to browse through a collection of movies, view detailed information, rate films, and leave reviews. The application features a responsive design, search functionality, and integration with movie data APIs to provide a comprehensive movie browsing experience.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#ffc107",
+        secondary: "#212121",
+        gradient: "linear-gradient(135deg, #ffc107, #212121)",
+        accent: "#ff8f00"
+      }
     },
     {
       id: 5,
@@ -109,6 +133,12 @@ const Projects = () => {
       details:
         "This Gym Management System is a desktop application developed for a local gym using Python and Tkinter. The system helps gym owners and staff manage member registrations, track attendance, schedule classes, handle billing and payments, and generate reports. It features a user-friendly interface with different access levels for administrators and staff members, and stores all data in a local database for easy access and management.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#1565c0",
+        secondary: "#64b5f6",
+        gradient: "linear-gradient(135deg, #1565c0, #64b5f6)",
+        accent: "#0d47a1"
+      }
     },
     {
       id: 6,
@@ -122,6 +152,12 @@ const Projects = () => {
       details:
         "Event Sphere is a modern, full-stack event booking platform that connects users with a diverse range of events. Built with React and Node.js, this application offers a seamless experience for discovering, booking, and managing event attendance.",
       gallery: [projectImage, projectImage, projectImage],
+      theme: {
+        primary: "#8d6e63",
+        secondary: "#d7ccc8",
+        gradient: "linear-gradient(135deg, #8d6e63, #d7ccc8)",
+        accent: "#5d4037"
+      }
     },
   ];
 
@@ -196,21 +232,27 @@ const Projects = () => {
               className={`card project-card fade-up ${
                 visibleSection ? "visible" : ""
               } ${flippedCard === project.id ? "flipped" : ""}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              style={{ 
+                transitionDelay: `${index * 0.1}s`,
+                '--project-primary': project.theme.primary,
+                '--project-secondary': project.theme.secondary,
+                '--project-gradient': project.theme.gradient,
+                '--project-accent': project.theme.accent
+              }}
               onClick={() => handleCardFlip(project.id)}
             >
               <div className="card-inner">
                 {/* Front of the card */}
-                <div className="card-front">
-                  <div className="card-front-icon">
+                <div className="card-front" style={{ background: project.theme.gradient }}>
+                  <div className="card-front-icon" style={{ color: 'white' }}>
                     <FaCode />
                   </div>
-                  <h3>{project.title}</h3>
-                  <p>Click to view details</p>
+                  <h3 style={{ color: 'white' }}>{project.title}</h3>
+                  <p style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Click to view details</p>
                 </div>
 
                 {/* Back of the card */}
-                <div className="card-back">
+                <div className="card-back themed-card-back">
                   <div className="project-img-container">
                     {project.image ? (
                       <img
@@ -226,26 +268,49 @@ const Projects = () => {
                         {project.title}
                       </div>
                     )}
-                    <div className="project-img-overlay"></div>
+                    <div className="project-img-overlay" style={{ 
+                      background: `linear-gradient(to top, ${project.theme.primary}dd, transparent)` 
+                    }}></div>
                   </div>
                   <div className="project-content">
-                    <h3 className="project-title">{project.title}</h3>
+                    <h3 className="project-title" style={{ color: project.theme.primary }}>
+                      {project.title}
+                    </h3>
                     <p className="project-description">{project.description}</p>
                     <div className="project-tags">
                       {project.technologies.slice(0, 3).map((tech, i) => (
-                        <span key={i} className="project-tag">
+                        <span 
+                          key={i} 
+                          className="project-tag"
+                          style={{ 
+                            backgroundColor: `${project.theme.primary}20`,
+                            color: project.theme.accent,
+                            border: `1px solid ${project.theme.primary}40`
+                          }}
+                        >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="project-tag">
+                        <span 
+                          className="project-tag"
+                          style={{ 
+                            backgroundColor: `${project.theme.primary}20`,
+                            color: project.theme.accent,
+                            border: `1px solid ${project.theme.primary}40`
+                          }}
+                        >
                           +{project.technologies.length - 3}
                         </span>
                       )}
                     </div>
                     <div className="project-actions">
                       <button
-                        className="btn btn-outline"
+                        className="btn btn-outline themed-btn"
+                        style={{
+                          borderColor: project.theme.primary,
+                          color: project.theme.primary
+                        }}
                         onClick={(e) => {
                           e.stopPropagation();
                           // Clear the auto-flip timer when user interacts with the card
@@ -255,6 +320,14 @@ const Projects = () => {
                           }
                           handleOpenProject(project);
                         }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = `${project.theme.primary}15`;
+                          e.target.style.transform = 'translateY(-2px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = 'transparent';
+                          e.target.style.transform = 'translateY(0)';
+                        }}
                       >
                         <FaEye style={{ marginRight: "8px" }} /> Details
                       </button>
@@ -263,7 +336,11 @@ const Projects = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-outline"
+                          className="btn btn-outline themed-btn"
+                          style={{
+                            borderColor: project.theme.primary,
+                            color: project.theme.primary
+                          }}
                           onClick={(e) => {
                             e.stopPropagation();
                             // Clear the auto-flip timer when user interacts with the card
@@ -272,12 +349,25 @@ const Projects = () => {
                               flipTimerRef.current = null;
                             }
                           }}
+                          onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = `${project.theme.primary}15`;
+                            e.target.style.transform = 'translateY(-2px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = 'transparent';
+                            e.target.style.transform = 'translateY(0)';
+                          }}
                         >
                           <FaGithub style={{ marginRight: "8px" }} /> GitHub
                         </a>
                       )}
                     </div>
                   </div>
+                  {/* Themed progress bar for auto-flip timer */}
+                  <div 
+                    className="card-back-timer"
+                    style={{ backgroundColor: project.theme.primary }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -288,7 +378,7 @@ const Projects = () => {
       {/* Project Detail Modal */}
       {selectedProject && (
         <div className="modal-overlay" onClick={handleCloseProject}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content themed-modal" onClick={(e) => e.stopPropagation()}>
             <div className="relative">
               <button className="modal-close" onClick={handleCloseProject}>
                 <FaTimes />
@@ -320,7 +410,7 @@ const Projects = () => {
                         style={{
                           border:
                             activeGalleryIndex === index
-                              ? "2px solid var(--primary-color)"
+                              ? `2px solid ${selectedProject.theme.primary}`
                               : "none",
                           opacity: activeGalleryIndex === index ? 1 : 0.7,
                         }}
@@ -335,6 +425,11 @@ const Projects = () => {
                       className={`gallery-dot ${
                         activeGalleryIndex === index ? "active" : ""
                       }`}
+                      style={{
+                        backgroundColor: activeGalleryIndex === index 
+                          ? selectedProject.theme.primary 
+                          : 'rgba(255, 255, 255, 0.3)'
+                      }}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleGalleryNav(index);
@@ -345,14 +440,26 @@ const Projects = () => {
               </div>
             </div>
             <div className="modal-body">
-              <h3 className="modal-title">{selectedProject.title}</h3>
+              <h3 className="modal-title" style={{ color: selectedProject.theme.primary }}>
+                {selectedProject.title}
+              </h3>
               <p className="modal-description">{selectedProject.details}</p>
 
               <div className="modal-section">
-                <h4 className="modal-section-title">Technologies</h4>
+                <h4 className="modal-section-title" style={{ color: selectedProject.theme.primary }}>
+                  Technologies
+                </h4>
                 <div className="modal-tags">
                   {selectedProject.technologies.map((tech, i) => (
-                    <span key={i} className="modal-tag">
+                    <span 
+                      key={i} 
+                      className="modal-tag"
+                      style={{
+                        backgroundColor: `${selectedProject.theme.primary}20`,
+                        color: selectedProject.theme.accent,
+                        border: `1px solid ${selectedProject.theme.primary}40`
+                      }}
+                    >
                       {tech}
                     </span>
                   ))}
@@ -366,6 +473,13 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary"
+                    style={{ backgroundColor: selectedProject.theme.primary }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = selectedProject.theme.accent;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = selectedProject.theme.primary;
+                    }}
                   >
                     <FaGithub style={{ marginRight: "8px" }} /> GitHub
                   </a>
@@ -376,6 +490,16 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline"
+                    style={{
+                      borderColor: selectedProject.theme.primary,
+                      color: selectedProject.theme.primary
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = `${selectedProject.theme.primary}15`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = 'transparent';
+                    }}
                   >
                     <FaExternalLinkAlt style={{ marginRight: "8px" }} /> Live
                     Demo
